@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="kkscl"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-10-02 04:38:27 PM"/>
+        <attribute name="created" value="a2tzY2w7REVTS1RPUC00Vkc0RU5DOzIwMjMtMTAtMDI7MTE6NTI6MTMgQU07Mjg0Ng=="/>
+        <attribute name="edited" value="a2tzY2w7REVTS1RPUC00Vkc0RU5DOzIwMjMtMTAtMDI7MDQ6Mzg6MjcgUE07ODsyOTg3"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <while expression="true">
+                <output expression="&quot;Hello !!!&quot;" newline="True"/>
+                <output expression="&quot;please enter your account number : &quot;" newline="False"/>
+                <declare name="accno" type="Integer" array="False" size=""/>
+                <input variable="accno"/>
+                <call expression="checkaccexist(accno)"/>
+                <if expression="checkaccexist(accno)=true">
+                    <then>
+                        <declare name="pin" type="Integer" array="False" size=""/>
+                        <declare name="arrayno" type="Integer" array="False" size=""/>
+                        <call expression="accnumber(accno)"/>
+                        <assign variable="arrayno" expression="accnumber(accno)"/>
+                        <call expression="accname(arrayno)"/>
+                        <declare name="testing" type="Boolean" array="False" size=""/>
+                        <assign variable="testing" expression="true"/>
+                        <declare name="loop" type="Integer" array="False" size=""/>
+                        <assign variable="loop" expression="0"/>
+                        <while expression="testing=true">
+                            <output expression="&quot;please input pin : &quot;" newline="False"/>
+                            <input variable="pin"/>
+                            <call expression="accpin(arrayno,pin)"/>
+                            <if expression="accpin(arrayno,pin)= true">
+                                <then>
+                                    <declare name="innertesting" type="Boolean" array="False" size=""/>
+                                    <assign variable="innertesting" expression="true"/>
+                                    <while expression="innertesting=true">
+                                        <declare name="amt" type="Real" array="False" size=""/>
+                                        <assign variable="amt" expression="0"/>
+                                        <declare name="newbal" type="Real" array="False" size=""/>
+                                        <declare name="option" type="Integer" array="False" size=""/>
+                                        <output expression="&quot;Please choose the designated option : &quot;" newline="True"/>
+                                        <output expression="&quot;option 1 : withdraw&quot;" newline="True"/>
+                                        <output expression="&quot;option 2 : check balance&quot;" newline="True"/>
+                                        <output expression="&quot;option 3 : change pin&quot;" newline="True"/>
+                                        <output expression="&quot;option 4 : exit&quot;" newline="True"/>
+                                        <input variable="option"/>
+                                        <if expression="option =1">
+                                            <then>
+                                                <output expression="&quot;please enter the required amount : &quot;" newline="False"/>
+                                                <input variable="amt"/>
+                                                <call expression="withdraw(arrayno,amt)"/>
+                                                <output expression="&quot;amount has been withdrawn&quot;" newline="True"/>
+                                                <output expression="&quot;your new balance is &quot;&amp;withdraw(arrayno,amt)" newline="True"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                        <assign variable="newbal" expression="withdraw(arrayno,amt)"/>
+                                        <if expression="option=2">
+                                            <then>
+                                                <call expression="accbal(arrayno,0)"/>
+                                                <output expression="&quot;your current balance is : &quot; &amp;newbal" newline="True"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                        <if expression="option = 3">
+                                            <then>
+                                                <declare name="newpin" type="Integer" array="False" size=""/>
+                                                <output expression="&quot;please enter you new pin : &quot;" newline="False"/>
+                                                <input variable="newpin"/>
+                                                <call expression="changepin(arrayno,newpin)"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                        <if expression="option = 4">
+                                            <then>
+                                                <assign variable="innertesting" expression="false"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                    </while>
+                                    <assign variable="testing" expression="false"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;the account pin is wrong. Please try again&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </while>
+                    </then>
+                    <else>
+                        <output expression="&quot;the account does not exist. Please try again&quot;" newline="True"/>
+                    </else>
+                </if>
+            </while>
+        </body>
+    </function>
+    <function name="accbal" type="Real" variable="newbal">
+        <parameters>
+            <parameter name="arrayno" type="Integer" array="False"/>
+            <parameter name="amt" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="newbal" type="Real" array="False" size=""/>
+            <declare name="bal" type="Real" array="True" size="2"/>
+            <assign variable="bal[0]" expression="1000"/>
+            <assign variable="bal[1]" expression="2000"/>
+            <assign variable="newbal" expression="bal[arrayno]-amt"/>
+        </body>
+    </function>
+    <function name="accname" type="None" variable="">
+        <parameters>
+            <parameter name="arrayno" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="outputname" type="String" array="False" size=""/>
+            <declare name="name" type="String" array="True" size="2"/>
+            <assign variable="name[0]" expression="&quot;hari&quot;"/>
+            <assign variable="name[1]" expression="&quot;tejas&quot;"/>
+            <assign variable="outputname" expression="name[arrayno]"/>
+            <output expression="&quot;hello &quot;&amp;outputname" newline="True"/>
+        </body>
+    </function>
+    <function name="accnumber" type="Integer" variable="m">
+        <parameters>
+            <parameter name="accno" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="m" type="Integer" array="False" size=""/>
+            <declare name="no" type="Real" array="True" size="2"/>
+            <assign variable="no[0]" expression="1234"/>
+            <assign variable="no[1]" expression="4321"/>
+            <for variable="i" start="0" end="1" direction="inc" step="1">
+                <if expression="accno == no[i]">
+                    <then>
+                        <assign variable="m" expression="i"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+        </body>
+    </function>
+    <function name="accpin" type="Boolean" variable="check">
+        <parameters>
+            <parameter name="arrayno" type="Integer" array="False"/>
+            <parameter name="pin" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="m" type="Integer" array="False" size=""/>
+            <assign variable="m" expression="arrayno"/>
+            <declare name="check" type="Boolean" array="False" size=""/>
+            <assign variable="check" expression="false"/>
+            <call expression="storedpin(m,0)"/>
+            <if expression="storedpin(m,0)=pin">
+                <then>
+                    <assign variable="check" expression="true"/>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+    <function name="changepin" type="None" variable="">
+        <parameters>
+            <parameter name="arrayno" type="Integer" array="False"/>
+            <parameter name="newpin" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <call expression="storedpin(arrayno,newpin)"/>
+        </body>
+    </function>
+    <function name="checkaccexist" type="Boolean" variable="statement">
+        <parameters>
+            <parameter name="accno" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="statement" type="Boolean" array="False" size=""/>
+            <declare name="no" type="Real" array="True" size="2"/>
+            <assign variable="no[0]" expression="1234"/>
+            <assign variable="no[1]" expression="4321"/>
+            <for variable="i" start="0" end="1" direction="inc" step="1">
+                <if expression="accno == no[i]">
+                    <then>
+                        <assign variable="statement" expression="true"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <if expression="statement = true">
+                <then/>
+                <else>
+                    <assign variable="statement" expression="false"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="storedpin" type="Integer" variable="return">
+        <parameters>
+            <parameter name="arrayno" type="Integer" array="False"/>
+            <parameter name="newpin" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="return" type="Integer" array="False" size=""/>
+            <declare name="pin" type="Integer" array="True" size="2"/>
+            <assign variable="pin[0]" expression="0"/>
+            <assign variable="pin[1]" expression="1"/>
+            <assign variable="return" expression="pin[arrayno]"/>
+            <if expression="newpin=0">
+                <then/>
+                <else>
+                    <assign variable="pin[arrayno]" expression="newpin"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="withdraw" type="Real" variable="return">
+        <parameters>
+            <parameter name="arrayno" type="Integer" array="False"/>
+            <parameter name="amt" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <call expression="accbal(arrayno,amt)"/>
+            <declare name="return" type="Real" array="False" size=""/>
+            <assign variable="return" expression="accbal(arrayno,amt)"/>
+        </body>
+    </function>
+</flowgorithm>
