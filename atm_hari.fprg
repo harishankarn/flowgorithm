@@ -4,14 +4,18 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="kkscl"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-10-02 04:26:03 PM"/>
+        <attribute name="saved" value="2023-10-02 07:27:03 PM"/>
         <attribute name="created" value="a2tzY2w7REVTS1RPUC00Vkc0RU5DOzIwMjMtMTAtMDI7MTE6NTI6MTMgQU07Mjg0Ng=="/>
-        <attribute name="edited" value="a2tzY2w7REVTS1RPUC00Vkc0RU5DOzIwMjMtMTAtMDI7MDQ6MjY6MDMgUE07MTsyOTcx"/>
+        <attribute name="edited" value="a2tzY2w7REVTS1RPUC00Vkc0RU5DOzIwMjMtMTAtMDI7MDc6Mjc6MDMgUE07NjsyOTgw"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <while expression="true">
+                <declare name="accountNumber" type="Integer" array="True" size="5"/>
+                <declare name="accountBalance" type="Integer" array="True" size="5"/>
+                <declare name="accountPin" type="Integer" array="True" size="5"/>
+                <declare name="accountName" type="String" array="True" size="5"/>
                 <output expression="&quot;Hello !!!&quot;" newline="True"/>
                 <output expression="&quot;please enter your account number : &quot;" newline="False"/>
                 <declare name="accno" type="Integer" array="False" size=""/>
@@ -57,11 +61,10 @@
                                             </then>
                                             <else/>
                                         </if>
-                                        <assign variable="newbal" expression="withdraw(arrayno,amt)"/>
                                         <if expression="option=2">
                                             <then>
                                                 <call expression="accbal(arrayno,0)"/>
-                                                <output expression="&quot;your current balance is : &quot; &amp;newbal" newline="True"/>
+                                                <output expression="&quot;your current balance is : &quot; &amp;accbal(arrayno,0)" newline="True"/>
                                             </then>
                                             <else/>
                                         </if>
@@ -107,6 +110,7 @@
             <assign variable="bal[0]" expression="1000"/>
             <assign variable="bal[1]" expression="2000"/>
             <assign variable="newbal" expression="bal[arrayno]-amt"/>
+            <assign variable="bal[arrayno]" expression="newbal"/>
         </body>
     </function>
     <function name="accname" type="None" variable="">
@@ -194,6 +198,30 @@
                     <assign variable="statement" expression="false"/>
                 </else>
             </if>
+        </body>
+    </function>
+    <function name="initAccountName" type="None" variable="">
+        <parameters>
+            <parameter name="accountN" type="String" array="True"/>
+        </parameters>
+        <body>
+            <assign variable="accountName[0]" expression="Bar"/>
+            <assign variable="accountName[1]" expression="Joe"/>
+            <assign variable="accountName[2]" expression="Hari"/>
+            <assign variable="accountName[4]" expression="Pie"/>
+            <assign variable="accountName[4]" expression="Foo"/>
+        </body>
+    </function>
+    <function name="initAccountPin" type="Integer" variable="">
+        <parameters>
+            <parameter name="accountP" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <assign variable="accountPin[0]" expression="0"/>
+            <assign variable="accountPin[1]" expression="1"/>
+            <assign variable="accountPin[2]" expression="2"/>
+            <assign variable="accountPin[3]" expression="3"/>
+            <assign variable="accountPin[4]" expression="4"/>
         </body>
     </function>
     <function name="storedpin" type="Integer" variable="return">
