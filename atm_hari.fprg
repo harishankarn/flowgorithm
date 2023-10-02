@@ -4,18 +4,18 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="kkscl"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-10-02 07:27:03 PM"/>
+        <attribute name="saved" value="2023-10-02 07:55:03 PM"/>
         <attribute name="created" value="a2tzY2w7REVTS1RPUC00Vkc0RU5DOzIwMjMtMTAtMDI7MTE6NTI6MTMgQU07Mjg0Ng=="/>
-        <attribute name="edited" value="a2tzY2w7REVTS1RPUC00Vkc0RU5DOzIwMjMtMTAtMDI7MDc6Mjc6MDMgUE07NjsyOTgw"/>
+        <attribute name="edited" value="a2tzY2w7REVTS1RPUC00Vkc0RU5DOzIwMjMtMTAtMDI7MDc6NTU6MDMgUE07OTsyOTg0"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <while expression="true">
-                <declare name="accountNumber" type="Integer" array="True" size="5"/>
-                <declare name="accountBalance" type="Integer" array="True" size="5"/>
-                <declare name="accountPin" type="Integer" array="True" size="5"/>
-                <declare name="accountName" type="String" array="True" size="5"/>
+                <call expression="initAccountName"/>
+                <call expression="initAccountNumber"/>
+                <call expression="initAccountPin"/>
+                <call expression="initAccountBalance"/>
                 <output expression="&quot;Hello !!!&quot;" newline="True"/>
                 <output expression="&quot;please enter your account number : &quot;" newline="False"/>
                 <declare name="accno" type="Integer" array="False" size=""/>
@@ -200,23 +200,43 @@
             </if>
         </body>
     </function>
-    <function name="initAccountName" type="None" variable="">
-        <parameters>
-            <parameter name="accountN" type="String" array="True"/>
-        </parameters>
+    <function name="initAccountBalance" type="None" variable="">
+        <parameters/>
         <body>
-            <assign variable="accountName[0]" expression="Bar"/>
-            <assign variable="accountName[1]" expression="Joe"/>
-            <assign variable="accountName[2]" expression="Hari"/>
-            <assign variable="accountName[4]" expression="Pie"/>
-            <assign variable="accountName[4]" expression="Foo"/>
+            <declare name="accountB" type="Integer" array="True" size="5"/>
+            <assign variable="accountB[0]" expression="1000"/>
+            <assign variable="accountB[1]" expression="2000"/>
+            <assign variable="accountB[2]" expression="3000"/>
+            <assign variable="accountB[3]" expression="4000"/>
+            <assign variable="accountB[4]" expression="5000"/>
         </body>
     </function>
-    <function name="initAccountPin" type="Integer" variable="">
-        <parameters>
-            <parameter name="accountP" type="Integer" array="True"/>
-        </parameters>
+    <function name="initAccountName" type="None" variable="">
+        <parameters/>
         <body>
+            <declare name="accountName" type="String" array="True" size="5"/>
+            <assign variable="accountName[0]" expression="&quot;Bar&quot;"/>
+            <assign variable="accountName[1]" expression="&quot;Joe&quot;"/>
+            <assign variable="accountName[2]" expression="&quot;Hari&quot;"/>
+            <assign variable="accountName[4]" expression="&quot;Pie&quot;"/>
+            <assign variable="accountName[4]" expression="&quot;Foo&quot;"/>
+        </body>
+    </function>
+    <function name="initAccountNumber" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="accountNum" type="Integer" array="True" size="5"/>
+            <assign variable="accountNum[0]" expression="100"/>
+            <assign variable="accountNum[1]" expression="101"/>
+            <assign variable="accountNum[2]" expression="102"/>
+            <assign variable="accountNum[3]" expression="103"/>
+            <assign variable="accountNum[4]" expression="104"/>
+        </body>
+    </function>
+    <function name="initAccountPin" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="accountPin" type="Integer" array="True" size="5"/>
             <assign variable="accountPin[0]" expression="0"/>
             <assign variable="accountPin[1]" expression="1"/>
             <assign variable="accountPin[2]" expression="2"/>
