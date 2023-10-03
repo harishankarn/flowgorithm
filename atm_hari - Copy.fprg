@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="kkscl"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-10-03 09:49:52 PM"/>
+        <attribute name="created" value="a2tzY2w7REVTS1RPUC00Vkc0RU5DOzIwMjMtMTAtMDI7MTE6NTI6MTMgQU07Mjg0Ng=="/>
+        <attribute name="edited" value="a2tzY2w7REVTS1RPUC00Vkc0RU5DOzIwMjMtMTAtMDM7MDk6NDk6NTIgUE07NDM7MzA0MA=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="accountBalance" type="Integer" array="True" size="10"/>
+            <assign variable="accountBalance[0]" expression="1000"/>
+            <assign variable="accountBalance[1]" expression="2000"/>
+            <assign variable="accountBalance[2]" expression="3000"/>
+            <assign variable="accountBalance[3]" expression="4000"/>
+            <assign variable="accountBalance[4]" expression="5000"/>
+            <assign variable="accountBalance[5]" expression="6000"/>
+            <assign variable="accountBalance[6]" expression="7000"/>
+            <assign variable="accountBalance[7]" expression="8000"/>
+            <assign variable="accountBalance[8]" expression="9000"/>
+            <assign variable="accountBalance[9]" expression="10000"/>
+            <comment text="Account balance"/>
+            <declare name="accountPin" type="Integer" array="True" size="10"/>
+            <assign variable="accountPin[0]" expression="0"/>
+            <assign variable="accountPin[1]" expression="1"/>
+            <assign variable="accountPin[2]" expression="2"/>
+            <assign variable="accountPin[3]" expression="3"/>
+            <assign variable="accountPin[4]" expression="4"/>
+            <assign variable="accountPin[5]" expression="5"/>
+            <assign variable="accountPin[6]" expression="6"/>
+            <assign variable="accountPin[7]" expression="7"/>
+            <assign variable="accountPin[8]" expression="8"/>
+            <assign variable="accountPin[9]" expression="9"/>
+            <comment text="Account pin"/>
+            <while expression="true">
+                <output expression="&quot;Hello !!!&quot;" newline="True"/>
+                <output expression="&quot;Please enter your account number : &quot;" newline="False"/>
+                <declare name="EnteredAccNo" type="Integer" array="False" size=""/>
+                <input variable="EnteredAccNo"/>
+                <comment text="Checking if the account exists or not"/>
+                <if expression="CheckAccountExist(EnteredAccNo)=true">
+                    <then>
+                        <declare name="arrayno" type="Integer" array="False" size=""/>
+                        <assign variable="arrayno" expression="CheckAccNumber(EnteredAccNo)"/>
+                        <comment text="Array number has been saved for ease of finding account details"/>
+                        <output expression="&quot;Hello &quot;&amp;initAccountName(arrayno)" newline="True"/>
+                        <declare name="Pin" type="Integer" array="False" size=""/>
+                        <assign variable="Pin" expression="accountPin[arrayno]"/>
+                        <comment text="Pin has been saved"/>
+                        <declare name="Balance" type="Real" array="False" size=""/>
+                        <assign variable="Balance" expression="accountBalance[arrayno]"/>
+                        <comment text="Balance has been saved"/>
+                        <declare name="InsideAccount" type="Boolean" array="False" size=""/>
+                        <assign variable="InsideAccount" expression="true"/>
+                        <comment text="Loop running for a given account"/>
+                        <while expression="InsideAccount=true">
+                            <declare name="EnteredPin" type="Integer" array="False" size=""/>
+                            <output expression="&quot;Please input pin : &quot;" newline="False"/>
+                            <input variable="EnteredPin"/>
+                            <declare name="NewBalance" type="Real" array="False" size=""/>
+                            <declare name="NewPin" type="Integer" array="False" size=""/>
+                            <declare name="check" type="Boolean" array="False" size=""/>
+                            <assign variable="check" expression="false"/>
+                            <if expression="accountPin[arrayno]=EnteredPin">
+                                <then>
+                                    <assign variable="check" expression="true"/>
+                                </then>
+                                <else/>
+                            </if>
+                            <comment text="Check's if pin is correct"/>
+                            <if expression="check= true">
+                                <then>
+                                    <declare name="AccountOptions" type="Boolean" array="False" size=""/>
+                                    <assign variable="AccountOptions" expression="true"/>
+                                    <comment text="Options for the chosen account"/>
+                                    <while expression="AccountOptions=true">
+                                        <declare name="option" type="Integer" array="False" size=""/>
+                                        <output expression="&quot;Please choose the designated option : &quot;" newline="True"/>
+                                        <output expression="&quot;Option 1 : Withdraw&quot;" newline="True"/>
+                                        <output expression="&quot;Option 2 : Check balance&quot;" newline="True"/>
+                                        <output expression="&quot;Option 3 : Change pin&quot;" newline="True"/>
+                                        <output expression="&quot;Option 4 : Exit&quot;" newline="True"/>
+                                        <input variable="option"/>
+                                        <comment text="Loop to withdraw money from account"/>
+                                        <if expression="option =1">
+                                            <then>
+                                                <declare name="amt" type="Real" array="False" size=""/>
+                                                <output expression="&quot;Please enter the amount to withdraw : &quot;" newline="False"/>
+                                                <input variable="amt"/>
+                                                <if expression="amt&gt;Balance">
+                                                    <then>
+                                                        <output expression="&quot;Entered amount exceeds current balance&quot;" newline="True"/>
+                                                    </then>
+                                                    <else>
+                                                        <if expression="Balance&lt;=0">
+                                                            <then>
+                                                                <output expression="&quot;Account is below mandatory money limit&quot;" newline="True"/>
+                                                            </then>
+                                                            <else>
+                                                                <assign variable="NewBalance" expression="Balance-amt"/>
+                                                                <assign variable="Balance" expression="NewBalance"/>
+                                                                <output expression="&quot;Amount has been withdrawn&quot;" newline="True"/>
+                                                            </else>
+                                                        </if>
+                                                    </else>
+                                                </if>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                        <comment text="Loop to check cureent balance in the account"/>
+                                        <if expression="option=2">
+                                            <then>
+                                                <output expression="&quot;Your current balance is : &quot; &amp;Balance" newline="True"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                        <comment text="Loop to change the account pin"/>
+                                        <if expression="option = 3">
+                                            <then>
+                                                <output expression="&quot;Please enter your new pin : &quot;" newline="False"/>
+                                                <input variable="newpin"/>
+                                                <assign variable="Pin" expression="NewPin"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                        <comment text="Loop to exit from options"/>
+                                        <if expression="option = 4">
+                                            <then>
+                                                <assign variable="AccountOptions" expression="false"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                        <comment text="Loop in case an invlid option is input"/>
+                                        <if expression="option!=1 &amp;&amp; option!=2 &amp;&amp; option!=3 &amp;&amp; option!=4">
+                                            <then>
+                                                <output expression="&quot; Please input a valid option&quot;" newline="True"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                    </while>
+                                    <assign variable="InsideAccount" expression="false"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;The account pin is wrong. Please try again&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </while>
+                        <comment text="Saving new pin to accountPin[] array"/>
+                        <assign variable="accountPin[arrayno]" expression="Pin"/>
+                        <comment text="Saving new pin to accountBalance[] array"/>
+                        <assign variable="accountBalance[arrayno]" expression="Balance"/>
+                    </then>
+                    <else>
+                        <output expression="&quot;The account does not exist. Please try again&quot;" newline="True"/>
+                    </else>
+                </if>
+            </while>
+        </body>
+    </function>
+    <function name="CheckAccNumber" type="Integer" variable="arrayno">
+        <parameters>
+            <parameter name="EnteredAccNo" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="loop" type="Integer" array="False" size=""/>
+            <declare name="arrayno" type="Integer" array="False" size=""/>
+            <assign variable="arrayno" expression="0"/>
+            <for variable="loop" start="0" end="9" direction="inc" step="1">
+                <call expression="initAccountNumber(loop)"/>
+                <if expression="EnteredAccNo== initAccountNumber(loop)">
+                    <then>
+                        <assign variable="arrayno" expression="loop"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+        </body>
+    </function>
+    <function name="CheckAccountExist" type="Boolean" variable="statement">
+        <parameters>
+            <parameter name="accno" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="loop" type="Integer" array="False" size=""/>
+            <declare name="statement" type="Boolean" array="False" size=""/>
+            <assign variable="statement" expression="false"/>
+            <for variable="loop" start="0" end="9" direction="inc" step="1">
+                <call expression="initAccountNumber(loop)"/>
+                <if expression="accno == initAccountNumber(loop)">
+                    <then>
+                        <assign variable="statement" expression="true"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+        </body>
+    </function>
+    <function name="initAccountName" type="String" variable="return">
+        <parameters>
+            <parameter name="arrayno" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="return" type="String" array="False" size=""/>
+            <declare name="accountName" type="String" array="True" size="10"/>
+            <assign variable="accountName[0]" expression="&quot;Bar&quot;"/>
+            <assign variable="accountName[1]" expression="&quot;Joe&quot;"/>
+            <assign variable="accountName[2]" expression="&quot;Hari&quot;"/>
+            <assign variable="accountName[3]" expression="&quot;Pie&quot;"/>
+            <assign variable="accountName[4]" expression="&quot;Foo&quot;"/>
+            <assign variable="accountName[5]" expression="&quot;Jake&quot;"/>
+            <assign variable="accountName[6]" expression="&quot;Jill&quot;"/>
+            <assign variable="accountName[7]" expression="&quot;Pranav&quot;"/>
+            <assign variable="accountName[8]" expression="&quot;Roland&quot;"/>
+            <assign variable="accountName[9]" expression="&quot;Tejas&quot;"/>
+            <assign variable="return" expression="accountName[arrayno]"/>
+        </body>
+    </function>
+    <function name="initAccountNumber" type="Integer" variable="return">
+        <parameters>
+            <parameter name="arrayno" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="return" type="Integer" array="False" size=""/>
+            <declare name="accountNum" type="Integer" array="True" size="10"/>
+            <assign variable="accountNum[0]" expression="100"/>
+            <assign variable="accountNum[1]" expression="101"/>
+            <assign variable="accountNum[2]" expression="102"/>
+            <assign variable="accountNum[3]" expression="103"/>
+            <assign variable="accountNum[4]" expression="104"/>
+            <assign variable="accountNum[5]" expression="105"/>
+            <assign variable="accountNum[6]" expression="106"/>
+            <assign variable="accountNum[7]" expression="107"/>
+            <assign variable="accountNum[8]" expression="108"/>
+            <assign variable="accountNum[9]" expression="109"/>
+            <assign variable="return" expression="accountNum[arrayno]"/>
+        </body>
+    </function>
+</flowgorithm>
